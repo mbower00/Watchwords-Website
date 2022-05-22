@@ -44,7 +44,7 @@ One purpose in working on this was to grow my skills in Django. I also love the 
 
 # Development Environment
 
-I used Visual Studio Code (code editor) with some extensions. I also used Firefox and Google Chrome (web browsers). I also used wireframe.cc for the creation of some wireframes. I used coolors.co for my color palette.
+I used Visual Studio Code (code editor) with some extensions. I also used Firefox and Google Chrome (web browsers). I also used wireframe.cc for the creation of some wireframes. I used coolors.co for my color palette. I also used Ditto Clipboard Manager ([Download](https://ditto-cp.sourceforge.io/)) to aid in developement. 
 
 Languages:
 * Python (Django uses this)
