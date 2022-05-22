@@ -99,9 +99,8 @@ Some (not all) of the Libraries used:
 * [git](https://git-scm.com/docs/gitignore)
 * [tutorialspoint (maybe)](https://www.tutorialspoint.com/django/index.htm)
 
-# Future Work
+# Future Work (More of a Wishlist)
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+* Add better handling, so that it can handle PLAY getting clicked when there are no word packs selected
+* Get the app publicly hosted
+* Add more word packs
