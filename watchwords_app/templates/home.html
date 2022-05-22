@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{css_ref}}"> 
+    <title>Watchwords | Home</title>
+</head>
+<body>
+    <!-- HEADING -->
+    <h1 style="color: #161925;">Watchwords</h1>
+    <!-- WORD PACK SELECTION -->
+    <div class="grid">
+        <div class="info"><p class="grid-piece-text">Select Word Packs:</p></div>
+        <a href="http://127.0.0.1:8000/classic/" class="word-pack-selection" style="background-color: {{classic_back}}; color: {{classic_text}};"><p class="grid-piece-text">Classic</p></a>
+        <a href="http://127.0.0.1:8000/lotr/" class="word-pack-selection" style="background-color: {{lotr_back}}; color: {{lotr_text}};"><p class="grid-piece-text">Lord of the Rings</p></a>
+        <a href="http://127.0.0.1:8000/pride/" class="word-pack-selection" style="background-color: {{pride_back}}; color: {{pride_text}};"><p class="grid-piece-text">Pride & Prejudice</p></a>
+        <a href="http://127.0.0.1:8000/presidents/" class="word-pack-selection" style="background-color: {{presidents_back}}; color: {{presidents_text}};"><p class="grid-piece-text">Presidents</p></a>
+        <a href="http://127.0.0.1:8000/countries/" class="word-pack-selection" style="background-color: {{countries_back}}; color: {{countries_text}};"><p class="grid-piece-text">Countries</p></a>
+        <a href="http://127.0.0.1:8000/star/" class="word-pack-selection" style="background-color: {{star_back}}; color: {{star_text}};"><p class="grid-piece-text">Star Wars</p></a>
+        <a href="http://127.0.0.1:8000/dune/" class="word-pack-selection" style="background-color: {{dune_back}}; color: {{dune_text}};"><p class="grid-piece-text">Dune</p></a>
+    </div>
+    <!-- EMAIL FORM -->
+    <!-- used code from: https://www.w3schools.com/django/django_add_record.php and https://docs.djangoproject.com/en/4.0/ref/csrf/-->
+    <form style="margin-top: 10px;" action="http://127.0.0.1:8000/addemail/" method="post" class="grid">{% csrf_token %}
+        <div class="info"><p class="grid-piece-text">Enter Emails:</p></div>
+        <input id="email_box" class="info" type="email" name="email_address">
+        <div id="email_list" class="info"><p class="grid-piece-text">{{email_addresses}}</p></div>
+        <a href="http://127.0.0.1:8000/resetemails/" class="word-pack-selection" style="background-color: #C1292E; color: #FDFFFC;"><p class="grid-piece-text">Reset Emails</p></a>
+    </form>
+    <!-- PLAY BUTTON -->
+    <div style="margin-top: 10px;" class="grid">
+        <a id="game-to-home" href="http://127.0.0.1:8000/game"><p class="grid-piece-text">Play</p></a>
+    </div>
+</body>
+</html>
+

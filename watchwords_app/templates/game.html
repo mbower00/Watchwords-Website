@@ -1,0 +1,58 @@
+<!-- COLOR CHANGING CODE FROM: https://www.w3schools.com/jsref/event_onclick.asp AND https://www.w3schools.com/jsref/prop_style_backgroundcolor.asp -->
+
+
+
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="..\static\game.css">
+    <title>Watchwords | Game</title>
+    <!-- FUNCTION FOR CHANGING THE COLOR OF THE "WORD" BUTTONS -->
+    <script>
+        function changeColor(to_change, new_color) {
+            let text_color = "#FDFFFC"
+            if(new_color === "#F1D302"){
+                text_color = "#161925"
+            }
+            to_change.style.backgroundColor = new_color
+            to_change.style.color = text_color
+        }
+    </script>
+</head>
+<body>
+    <!-- HEADING -->
+    <h1 style="color: {{startingColor}};" id="title">Watchwords</h1>
+    <div class="grid">
+        <!-- "WORD" BUTTONS -->
+        <button type="button" onclick="changeColor(this, '{{1c}}')"><p class="grid-piece-text">{{1w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{2c}}')"><p class="grid-piece-text">{{2w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{3c}}')"><p class="grid-piece-text">{{3w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{4c}}')"><p class="grid-piece-text">{{4w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{5c}}')"><p class="grid-piece-text">{{5w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{6c}}')"><p class="grid-piece-text">{{6w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{7c}}')"><p class="grid-piece-text">{{7w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{8c}}')"><p class="grid-piece-text">{{8w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{9c}}')"><p class="grid-piece-text">{{9w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{10c}}')"><p class="grid-piece-text">{{10w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{11c}}')"><p class="grid-piece-text">{{11w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{12c}}')"><p class="grid-piece-text">{{12w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{13c}}')"><p class="grid-piece-text">{{13w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{14c}}')"><p class="grid-piece-text">{{14w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{15c}}')"><p class="grid-piece-text">{{15w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{16c}}')"><p class="grid-piece-text">{{16w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{17c}}')"><p class="grid-piece-text">{{17w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{18c}}')"><p class="grid-piece-text">{{18w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{19c}}')"><p class="grid-piece-text">{{19w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{20c}}')"><p class="grid-piece-text">{{20w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{21c}}')"><p class="grid-piece-text">{{21w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{22c}}')"><p class="grid-piece-text">{{22w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{23c}}')"><p class="grid-piece-text">{{23w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{24c}}')"><p class="grid-piece-text">{{24w}}</p></button>
+        <button type="button" onclick="changeColor(this, '{{25c}}')"><p class="grid-piece-text">{{25w}}</p></button>
+        <!-- RUN BACK BUTTON -->
+        <a id="game-to-game" href="http://127.0.0.1:8000/game"><p class="grid-piece-text">Run Back</p></a>
+        <!-- HOME BUTTON -->
+        <a id="game-to-home" href="http://127.0.0.1:8000/"><p class="grid-piece-text">Home</p></a>
+    </div>
+    
+</body>
+</html>

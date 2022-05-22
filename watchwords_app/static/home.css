@@ -1,0 +1,100 @@
+/* CSS FILE FOR THE home.html FILE */
+
+/* # COLOR PALLETTE (From: https://coolors.co)*/
+
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Staatliches&display=swap'); /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
+
+
+.grid {
+    margin-top: auto;
+    margin:auto;
+    /* max-width: 700px; */
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid-piece-text {
+    margin: 0;
+    line-height: 100%;
+    text-align: center;
+}
+.word-pack-selection {
+    text-decoration: none;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 0;
+}
+
+button, a, .info, .word-pack-selection {
+    height: auto;
+    min-height: 2em;
+    background-color: #dbd4d3;
+    border:#dbd4d3;
+    border-radius: 5px;
+    color:#161925;
+    font-size: 3em;
+    padding: .35em;
+    font-family: 'Staatliches', cursive; /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
+}
+
+body {
+    background-color: #FDFFFC;
+}
+
+#game-to-home {
+    grid-column-start: -2;
+    grid-column-end: -1;
+    text-decoration: none;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 0;
+    background-color: #161925;
+    border:#dbd4d3;
+    color:#FDFFFC;
+}
+
+
+.info{
+    min-height: 2em;
+    text-decoration: none;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 0;
+    background-color: #161925;
+    border:#dbd4d3;
+    color:#FDFFFC;
+}
+
+#email_box {
+    grid-column-end: -1;
+    grid-column-start: 2;
+    text-decoration: none;
+    padding: 10;
+    background-color: #dbd4d3;
+    border: #dbd4d3;
+    color: #161925;
+    text-align: center;
+    width: auto;
+  }
+
+#email_list {
+    grid-column-start: 1;
+    grid-column-end: -2;
+}
+
+#title {
+    grid-column-start: 1;
+    grid-column-end: -1;
+
+}
+
+h1 {
+    line-height: 100%;
+    margin: auto;
+    font-size: 14vw;
+    font-family: 'Staatliches', cursive; /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
+}
