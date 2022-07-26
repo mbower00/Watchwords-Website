@@ -35,6 +35,10 @@ html_ready_home_info = {
     "dune_text": BLACK,
     "star_back": CARD_WHITE,
     "star_text": BLACK,
+    "more_words_back": CARD_WHITE,
+    "more_words_text": BLACK,
+    "famous_back": CARD_WHITE,
+    "famous_text": BLACK,
 }
 
 # converts list of email addresses to a string of them concatenated together (e.g. " --- EMAIL@EMAIL.com --- EMAIL@EMAIL.com --- ")
@@ -250,6 +254,41 @@ def toggle_dune(request):
         color_pack = rand_color_pack()
         html_ready_home_info["dune_back"] = color_pack[0]
         html_ready_home_info["dune_text"] = color_pack[1]
+    return render(request, "home.html", html_ready_home_info)
+
+# toggles including the More Words pack, changes the color, gives home.html the correct path to the home.css file
+def toggle_more_words(request):
+    global html_ready_home_info
+    global word_packs
+    global calls
+    html_ready_home_info["css_ref"] =  "..\static\home.css"
+    if "more_words" in word_packs:
+        word_packs.remove("more_words")
+        color_pack = rand_color_pack(is_vanilla=True)
+        html_ready_home_info["more_words_back"] = color_pack[0]
+        html_ready_home_info["more_words_text"] = color_pack[1]
+    else:
+        word_packs.append("more_words")
+        color_pack = rand_color_pack()
+        html_ready_home_info["more_words_back"] = color_pack[0]
+        html_ready_home_info["more_words_text"] = color_pack[1]
+    return render(request, "home.html", html_ready_home_info)
+
+def toggle_famous(request):
+    global html_ready_home_info
+    global word_packs
+    global calls
+    html_ready_home_info["css_ref"] =  "..\static\home.css"
+    if "famous_people" in word_packs:
+        word_packs.remove("famous_people")
+        color_pack = rand_color_pack(is_vanilla=True)
+        html_ready_home_info["famous_back"] = color_pack[0]
+        html_ready_home_info["famous_text"] = color_pack[1]
+    else:
+        word_packs.append("famous_people")
+        color_pack = rand_color_pack()
+        html_ready_home_info["famous_back"] = color_pack[0]
+        html_ready_home_info["famous_text"] = color_pack[1]
     return render(request, "home.html", html_ready_home_info)
 
 
@@ -660,7 +699,10 @@ class Comissioner:
 
 
 
+# ===========================================================================
+#                                   PRIVATE DATA:
 
+# ===========================================================================
 
 
 

@@ -104,3 +104,15 @@ Some (not all) of the Libraries used:
 * Add better handling, so that it can handle PLAY getting clicked when there are no word packs selected
 * Get the app publicly hosted
 * Add more word packs
+
+## How to add another word pack...
+* Add new collection to the Firestore Database
+    * using Watchwords-Database project and a .txt file
+* Update this project:
+    * home.html
+        * add another appropriate `<a><p></p></a>` element 
+    * views.py
+        * add a `toggle_*` function, like the others
+        * add `*_back` and `*_text` to the `html_ready_home_info` global dict
+    * urls.py
+        * add another `path(*)` with the `views.toggle_*` function to the `urlpatterns` list

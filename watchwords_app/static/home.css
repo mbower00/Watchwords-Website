@@ -36,7 +36,7 @@ button, a, .info, .word-pack-selection {
     color:#161925;
     font-size: 3em;
     padding: .35em;
-    font-family: 'Staatliches', cursive; /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
+    font-family: 'Staatliches', sans-serif; /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
 }
 
 body {
@@ -96,5 +96,5 @@ h1 {
     line-height: 100%;
     margin: auto;
     font-size: 14vw;
-    font-family: 'Staatliches', cursive; /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
+    font-family: 'Staatliches', sans-serif; /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
 }
