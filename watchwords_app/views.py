@@ -58,6 +58,7 @@ def convert_color_to_code(color:str):
     elif color == "black":
         return BLACK
 
+
 # gets the words from the data base, assigns colors, sends the answer email to the addresses (stored in a global), and loads up the game.htmt (passing data to it)
 def start_game(request):
     global fireman
@@ -306,11 +307,14 @@ def email_file(html_ready_words_and_colors, color_word_key, receiver_email_addre
         html_ready_words_and_colors (dict): the word+color dictionary ready to be sent to the html 
         color_word_key (dict): the color - words answers
         receiver_email_address (str): receiver's email address (also, the subject of the email, sans ".txt")
-        sender_password (str): password for mitchbbowercode@gmail.com
+        sender_password (str): password for mitchbbowercode@gmail.com (depreciated)
+        sender_password (str): password for mitchbbowercode@yahoo.com
     """
+    global sender_email
+
     mail = MIMEMultipart("alternative")
     mail["Subject"] = "WATCHWORDS ANSWERS"
-    mail["From"] = "mitchbbowercode@gmail.com"
+    mail["From"] = sender_email
     mail["To"] = receiver_email_address
     
     text_mail=""
@@ -367,11 +371,12 @@ def email_file(html_ready_words_and_colors, color_word_key, receiver_email_addre
     
     mail.attach(text_part)
     mail.attach(html_part)
+    
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(sender_email, sender_password)
+        server.sendmail(sender_email, receiver_email_address, mail.as_string())
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", context=ssl.create_default_context()) as server:
-        server.login("mitchbbowercode@gmail.com", sender_password)
-        # receiver = input("Please enter the receiver email address > ")
-        server.sendmail("mitchbbowercode@gmail.com", receiver_email_address, mail.as_string())
 
 
 
@@ -655,10 +660,7 @@ class Comissioner:
 
 
 
-# ===========================================================================
-#                                   PRIVATE DATA:
-# globals: password and fire_cert
-# ===========================================================================
+
 
 
 

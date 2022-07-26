@@ -13,5 +13,5 @@ urlpatterns = [
     path('dune/', views.toggle_dune, name="toggle_dune"),
     path('addemail/', views.add_email, name="add_email"),
     path('resetemails/', views.reset_emails, name="reset_emails"),
-    path('', views.home_start, name="home_start")
+    path('', views.home_start, name="home_start"),
 ]

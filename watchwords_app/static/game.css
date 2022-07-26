@@ -20,7 +20,7 @@
 
 button, a {
     height: auto;
-    min-height: 2em;
+    min-height: 1.99em;
     background-color: #dbd4d3;
     border:#dbd4d3;
     border-radius: 5px;
