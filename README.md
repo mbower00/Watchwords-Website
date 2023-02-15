@@ -19,6 +19,10 @@ To play:
 
 One purpose in working on this was to grow my skills in Django. I also love the game [Codenames](https://czechgames.com/files/rules/codenames-rules-en.pdf) and wanted to have a digital version to play with friends.
 
+## Demo
+
+Click the link to view a video demo...
+
 [Software Demo Video](https://youtu.be/6RsB65yzDz8)
 
 # Web Pages
