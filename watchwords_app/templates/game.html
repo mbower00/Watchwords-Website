@@ -7,18 +7,11 @@
     <link rel="stylesheet" href="..\static\game.css">
     <title>Watchwords | Game</title>
     <!-- FUNCTION FOR CHANGING THE COLOR OF THE "WORD" BUTTONS -->
-    <script>
-        function changeColor(to_change, new_color) {
-            let text_color = "#FDFFFC"
-            if(new_color === "#F1D302"){
-                text_color = "#161925"
-            }
-            to_change.style.backgroundColor = new_color
-            to_change.style.color = text_color
-        }
+    <script src="..\static\game.js">
     </script>
 </head>
 <body>
+    
     <!-- HEADING -->
     <h1 style="color: {{startingColor}};" id="title">Watchwords</h1>
     <div class="grid">

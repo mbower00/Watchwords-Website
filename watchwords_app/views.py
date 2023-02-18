@@ -39,6 +39,10 @@ html_ready_home_info = {
     "more_words_text": BLACK,
     "famous_back": CARD_WHITE,
     "famous_text": BLACK,
+    "more_words_back": CARD_WHITE,
+    "more_words_text": BLACK,
+    "famous_back": CARD_WHITE,
+    "famous_text": BLACK,
 }
 
 # converts list of email addresses to a string of them concatenated together (e.g. " --- EMAIL@EMAIL.com --- EMAIL@EMAIL.com --- ")
@@ -254,6 +258,41 @@ def toggle_dune(request):
         color_pack = rand_color_pack()
         html_ready_home_info["dune_back"] = color_pack[0]
         html_ready_home_info["dune_text"] = color_pack[1]
+    return render(request, "home.html", html_ready_home_info)
+
+# toggles including the More Words pack, changes the color, gives home.html the correct path to the home.css file
+def toggle_more_words(request):
+    global html_ready_home_info
+    global word_packs
+    global calls
+    html_ready_home_info["css_ref"] =  "..\static\home.css"
+    if "more_words" in word_packs:
+        word_packs.remove("more_words")
+        color_pack = rand_color_pack(is_vanilla=True)
+        html_ready_home_info["more_words_back"] = color_pack[0]
+        html_ready_home_info["more_words_text"] = color_pack[1]
+    else:
+        word_packs.append("more_words")
+        color_pack = rand_color_pack()
+        html_ready_home_info["more_words_back"] = color_pack[0]
+        html_ready_home_info["more_words_text"] = color_pack[1]
+    return render(request, "home.html", html_ready_home_info)
+
+def toggle_famous(request):
+    global html_ready_home_info
+    global word_packs
+    global calls
+    html_ready_home_info["css_ref"] =  "..\static\home.css"
+    if "famous_people" in word_packs:
+        word_packs.remove("famous_people")
+        color_pack = rand_color_pack(is_vanilla=True)
+        html_ready_home_info["famous_back"] = color_pack[0]
+        html_ready_home_info["famous_text"] = color_pack[1]
+    else:
+        word_packs.append("famous_people")
+        color_pack = rand_color_pack()
+        html_ready_home_info["famous_back"] = color_pack[0]
+        html_ready_home_info["famous_text"] = color_pack[1]
     return render(request, "home.html", html_ready_home_info)
 
 # toggles including the More Words pack, changes the color, gives home.html the correct path to the home.css file
@@ -573,6 +612,7 @@ class Fireman:
 
 from random import randint
 from random import shuffle
+import threading as t
 
 class Comissioner:
     """The Comissioner provides functionallity for choosing watchwords from the database and assigning them colors for gameplay.
@@ -597,16 +637,39 @@ class Comissioner:
         self.watchwords = [] # reset watchwords
         results = []
         self._decide_words(collections, fireman)
+        threads = []
+        lock = t.Lock()
+        
         for i in collections:
             for j in self.watchword_ids[i]:
-                data = fireman.get_data(i, j)
-                while data in results:
-                    data = fireman.get_data(i, self._get_new_word_id(i, fireman))
-                results.append(data)
+                threads.append(t.Thread(target=(self._get_threaded_data), args=(i, j, lock, results, fireman)))
+                # data = fireman.get_data(i, j)
+                # while data in results:
+                #     data = fireman.get_data(i, self._get_new_word_id(i, fireman))
+                # results.append(data)
+        for i in threads:
+            i.start()
+        for i in threads:
+            i.join()
+        
         shuffle(results)
         self.watchwords = results
         self._generate_color_word_key()
         self.watchword_ids = {} # reset watchword_ids for future use
+    
+    def _get_threaded_data(self, col, id, lock, results, fireman):
+        """Has the thread take put the data in the results list. If the data is already in the results list, thread will get new data."""
+        data = fireman.get_data(col, id)
+        adding_needed = True
+        while adding_needed:
+            lock.acquire()
+            if not (data in results):
+                results.append(data)
+                lock.release()
+                adding_needed = False
+            else:
+                lock.release()
+                data = fireman.get_data(col, self._get_new_word_id(col, fireman))
 
     def _decide_words(self, collections, fireman):
         """gets 25 watchwords IDs for the game. It trys to get at least one from each collection
@@ -640,7 +703,8 @@ class Comissioner:
                         is_trying = False
                     else:
                         is_trying = True
-        
+    
+    
     def _get_new_word_id(self, collection, fireman):
         """gets a new watchword ID that is not already in the member list: watchword_ids[collection]
 
