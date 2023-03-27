@@ -16,7 +16,7 @@ CARD_WHITE = "#dbd4d3"
 #global list of word packs to be used
 word_packs = []
 #global list of email addresses to send the answers to
-email_addresses = []
+email_addresses = ["Sjskyler27@gmail.com", "kiarafinlinson@gmail.com"]
 
 # global dict with data to pass to home.html
 html_ready_home_info = {
@@ -35,6 +35,10 @@ html_ready_home_info = {
     "dune_text": BLACK,
     "star_back": CARD_WHITE,
     "star_text": BLACK,
+    "more_words_back": CARD_WHITE,
+    "more_words_text": BLACK,
+    "famous_back": CARD_WHITE,
+    "famous_text": BLACK,
     "more_words_back": CARD_WHITE,
     "more_words_text": BLACK,
     "famous_back": CARD_WHITE,
@@ -254,6 +258,41 @@ def toggle_dune(request):
         color_pack = rand_color_pack()
         html_ready_home_info["dune_back"] = color_pack[0]
         html_ready_home_info["dune_text"] = color_pack[1]
+    return render(request, "home.html", html_ready_home_info)
+
+# toggles including the More Words pack, changes the color, gives home.html the correct path to the home.css file
+def toggle_more_words(request):
+    global html_ready_home_info
+    global word_packs
+    global calls
+    html_ready_home_info["css_ref"] =  "..\static\home.css"
+    if "more_words" in word_packs:
+        word_packs.remove("more_words")
+        color_pack = rand_color_pack(is_vanilla=True)
+        html_ready_home_info["more_words_back"] = color_pack[0]
+        html_ready_home_info["more_words_text"] = color_pack[1]
+    else:
+        word_packs.append("more_words")
+        color_pack = rand_color_pack()
+        html_ready_home_info["more_words_back"] = color_pack[0]
+        html_ready_home_info["more_words_text"] = color_pack[1]
+    return render(request, "home.html", html_ready_home_info)
+
+def toggle_famous(request):
+    global html_ready_home_info
+    global word_packs
+    global calls
+    html_ready_home_info["css_ref"] =  "..\static\home.css"
+    if "famous_people" in word_packs:
+        word_packs.remove("famous_people")
+        color_pack = rand_color_pack(is_vanilla=True)
+        html_ready_home_info["famous_back"] = color_pack[0]
+        html_ready_home_info["famous_text"] = color_pack[1]
+    else:
+        word_packs.append("famous_people")
+        color_pack = rand_color_pack()
+        html_ready_home_info["famous_back"] = color_pack[0]
+        html_ready_home_info["famous_text"] = color_pack[1]
     return render(request, "home.html", html_ready_home_info)
 
 # toggles including the More Words pack, changes the color, gives home.html the correct path to the home.css file
@@ -724,6 +763,28 @@ class Comissioner:
 
 
 
+# ===========================================================================
+#                                   PRIVATE DATA:
+
+# ===========================================================================
+# globals: password and fire_cert
+# password = "g6hHe3GzXUptFxS" # gmail: depreciated
+password = "kfgpqsmyupviwdxm"
+sender_email = "watchwordsgame@gmail.com"
+fire_cert = {
+  "type": "service_account",
+  "project_id": "watchwords-mulch",
+  "private_key_id": "a4eba30f59967ccbbdfcc61e1562ab1110861347",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDCxkzIN6XADR+q\ngdI8a4cYTBJ4WwzOGStZQdBPgt7S4TabeFGG9b6ebalMJrBFCXtaVW6pVkjPmrzC\nyzx7HELNpCLsX0y34OZmEPSY1FaFfJXIMgruYeFcK2scMBgZchEOD34tjlnocLVY\nDq3BbGXaB/xbINXv47+VexCqOBZZa3PgZz37/CSpNUhvcBr4QHKrIuKSeT6tLAhJ\nH4KEd0L8Hrn/Dh1obGyCULfhWkQ4HsweJpYoH9MvzBsnP8bga8Bqb/6Qx+qbGfsy\nJuoIzajLysRDB92CAblFDGa37b1BV7YOIs3nBMiZ/ZBxJdAfXizQHXDM/2j3IQAl\n2YL12nglAgMBAAECggEAEY40D3vMicHlD8ZBv8ZlV9BLfeOfBNiJ6rKe5vvBv7oi\n5OJ0Xri5pKf3sXBvRNm075Bxt/uZ9nRY/Sm6WtJSRxy7NRjl3lD8E0kF8tx4q/Ft\nwqyYBaJ24IrdTZ4cHfcFCIJm+g4xllzKS5SPHrb5eyxrF3+fKM8bTorYFq+VfBul\n4DJR13LQXEf/17z7wyXdtAaIiPZ4dDy5SVRFP9b2lp5rEfDODcO1VydWayiKSjXR\nPdGj0Mbye284XdlSACMeq5zMwwVUFCtXpG/pocYUxogQJ/7St8CIQZDoe/Vt7j45\nFeC1ejfXyqQzu1ImKGpTBfpKcOgkaNVTVnDeNtPvBQKBgQDzUzomsTsQfT9WSE+a\nxBL8AqFWyq/lpQiHm3jifDQqqaoEb7odYT1HNH3Bt3VTeXz6uNm/U9miC1fuGhLw\nt/QjPm/cl2BGUxNIfiTjeBpHupx/QwdBEtGq7u5kx09ndrgscM5wk6gES9kPkG5j\njHy4QOT427hxk9f3lkAjuSlhAwKBgQDM66U5MVRZ2xNeCJS2dTOJjvguqwJzIlnI\nccbB1NqAOO3lm0uBirn/WHS4FOCAHnLc5WnkShQJxkrW+ndtsVMhoCug1WMADPAK\nTLVbZGDAmgzpmMVsWNuLtc0iy9PzFK6Pzr6HPK64JkWC2UR4S0PFanS77pCgwWJs\nHpBJMOW1twKBgAEcMRi6GEXj/GT9YXeYS2ng7TGDLThD/3z25Z9K58YGDiOFCvlV\nVz067RP0LVHbLQnLzBqGXGjT2mvYrJtyi2eZwlLkUekgOedLxAlRo/UN0eb2vFK8\nrj40ZtwI2MDlFsQFI7v5wHt8iRn8E7TakDsa+LB1+Cp0fTjA87v1/U1XAoGBALmr\nOQTdAUR5Ds9Ajx3Si2OzuoLuR0Xydc77585wAZnz+vjzADLbczM8/mRb5h2vePtU\nkeFajVVd6SlnvxYQePYane0X6p99GXD7l8a66D8aVWDCHv7Qc/veOYOxktTIhHGg\nLVlzTgtkAc9Q9IzaBQm2LxaoTTqafYbhGnJ2b2t5AoGAYxM8xV7RoCuN00wr0SwL\nbh0VOen9vC68XYQv6eHiTkXYPZvHWyRQznGX7npsKRGrrHwzC1Bsqns1Ha2RIJvP\n/LdbKBOSTT2pNhSDwyZHjD4qsDJdynaBxkO6sLahw4esB8Uych3WpL4UrY2rxWYS\nGhzXkoSbmehOUdgi5GHg2TM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "watchwords-mulch@appspot.gserviceaccount.com",
+  "client_id": "101997752807582317802",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/watchwords-mulch%40appspot.gserviceaccount.com"
+}
+
+
 
 
 
@@ -736,3 +797,9 @@ class Comissioner:
 # construct the Fireman and Comissioner to be used as globals
 fireman = Fireman()
 comissioner = Comissioner()
+
+# in order to run from a computer you need to download some python databases
+#PS C:\Users\sky\OneDrive\Documents\Programming\random\Watchwords-Website> py manage.py runserver
+
+#to run open a new terminal type  py manage.py runserver enter 
+# then ctrl click on the url http://127.0.0.1:8000/ add any emails youd like but mine and kiaras are in allready

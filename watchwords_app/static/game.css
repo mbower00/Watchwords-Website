@@ -11,6 +11,7 @@
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    cursor: url('cursor3.png'),pointer;
 }
 
 .grid-piece-text {
@@ -23,15 +24,17 @@ button, a {
     min-height: 1.99em;
     background-color: #dbd4d3;
     border:#dbd4d3;
-    border-radius: 5px;
+    border-radius: 6px;
     color:#161925;
     font-size: 3em;
     padding: .35em;
     font-family: 'Staatliches', sans-serif; /* copied from https://fonts.google.com/specimen/Koulen#type-tester */
+    cursor: url('cursor3.png'),pointer;
 }
 
 body {
     background-color: #FDFFFC;
+    cursor: url('cursor3.png'),pointer;
 }
 
 #game-to-home {
@@ -46,6 +49,7 @@ body {
     border:#dbd4d3;
     color:#FDFFFC;
     margin-top:10px;
+    cursor: url('cursor3.png'),pointer;
 }
 
 
@@ -61,6 +65,7 @@ body {
     border: #dbd4d3;
     color: #FDFFFC;
     margin-top: 10px;
+    cursor: url('cursor3.png'),pointer;
   }
 
 
